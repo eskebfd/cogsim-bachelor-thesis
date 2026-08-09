@@ -1,5 +1,7 @@
 import streamlit as st
 
+from frontend.features.models.actions import prepare_simulation
+from frontend.shared.ui.loading_overlay import global_loading
 from frontend.workflow.review_action_panel import (
     render_review_action_panel,
 )
@@ -38,6 +40,16 @@ from frontend.workflow.steps import (
 )
 
 
+def handle_pending_workflow_actions() -> None:
+    if st.session_state.pop("pending_simulation_preparation", False):
+        with global_loading(
+            "Der Simulationsplan wird vorbereitet.",
+            hint="Die aktuell geprüften Werte werden übernommen.",
+            estimated_seconds=18.0,
+        ):
+            prepare_simulation(rerun=False)
+
+
 def render_current_step() -> None:
     current_step = st.session_state.get(
         "simulation_step",
@@ -70,6 +82,8 @@ def render_current_step() -> None:
 
 
 def render_workflow_view() -> None:
+    handle_pending_workflow_actions()
+
     st.markdown(
         '<div class="cogsim-workflow-eyebrow">Simulation</div>',
         unsafe_allow_html=True,

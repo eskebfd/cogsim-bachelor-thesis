@@ -146,7 +146,7 @@ def add_missing_task_step(
             st.session_state.pending_missing_task_step_request = None
 
 
-def prepare_simulation() -> None:
+def prepare_simulation(*, rerun: bool = True) -> None:
     scenario_description = st.session_state.get(
         "scenario_input",
         "",
@@ -200,4 +200,5 @@ def prepare_simulation() -> None:
         target_step=SIMULATION_PLAN_STEP,
     )
 
-    st.rerun()
+    if rerun:
+        st.rerun()

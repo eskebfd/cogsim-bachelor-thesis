@@ -1,9 +1,11 @@
 import streamlit as st
 
-from frontend.shared.ui.loading_overlay import global_loading
 from frontend.shared.ui.status_messages import render_info_message
-from frontend.features.models.actions import prepare_simulation
 from frontend.workflow.steps import SIMULATION_FOUNDATIONS_STEP
+
+
+def request_simulation_preparation() -> None:
+    st.session_state["pending_simulation_preparation"] = True
 
 
 def render_base_review_actions() -> None:
@@ -17,31 +19,21 @@ def render_base_review_actions() -> None:
             "Der Simulationsplan wurde bereits vorbereitet."
         )
 
-        if st.button(
+        st.button(
             "Simulationsplan erneut vorbereiten",
             type="primary",
             use_container_width=True,
-        ):
-            with global_loading(
-                "Der Simulationsplan wird vorbereitet.",
-                hint="Die aktuell geprüften Werte werden übernommen.",
-                estimated_seconds=18.0,
-            ):
-                prepare_simulation()
+            on_click=request_simulation_preparation,
+        )
 
         return
 
-    if st.button(
+    st.button(
         "Simulationsplan vorbereiten",
         type="primary",
         use_container_width=True,
-    ):
-        with global_loading(
-            "Der Simulationsplan wird vorbereitet.",
-            hint="Die aktuell geprüften Werte werden übernommen.",
-            estimated_seconds=18.0,
-        ):
-            prepare_simulation()
+        on_click=request_simulation_preparation,
+    )
 
 
 def render_review_action_panel(current_step: int) -> None:
