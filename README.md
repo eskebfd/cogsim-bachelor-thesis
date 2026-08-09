@@ -1,16 +1,10 @@
 # CogSim
 
-CogSim ist ein Forschungsprototyp zur simulationsgestützten Analyse von
-Nutzungsszenarien. Das System überführt natürlichsprachliche Beschreibungen und
-optional Screenshots mithilfe eines Large Language Models in strukturierte
-Modelle der Aufgabe, der Benutzungsschnittstelle und der Nutzungsumgebung.
-Diese Modelle werden anschließend mit vordefinierten Nutzerprofilen kombiniert
-und in einer deterministischen Simulation ausgewertet.
+CogSim ist ein Forschungsprototyp zur Unterstützung von Diversity-Sensitive Design durch simulationsgestützte Analyse von Nutzungsszenarien. Ziel ist es, Designer:innen bereits in frühen Gestaltungsphasen dabei zu unterstützen, potenzielle Nutzungshürden für unterschiedliche kognitive Nutzerprofile zu identifizieren und Gestaltungslösungen aus verschiedenen modellierten Perspektiven zu bewerten.
 
-Der Prototyp wurde im Rahmen einer Bachelorarbeit in der Medieninformatik
-entwickelt. Er dient der explorativen Unterstützung früher Gestaltungsphasen
-und ersetzt keine empirische Usability- oder Accessibility-Evaluation mit
-realen Nutzer:innen.
+Das System überführt natürlichsprachliche Szenariobeschreibungen und optional Screenshots mithilfe eines Large Language Models in strukturierte Modelle der Aufgabe, der Benutzungsschnittstelle und der Nutzungsumgebung. Diese Modelle werden anschließend mit vordefinierten Referenzprofilen kombiniert und in einer deterministischen Simulation ausgewertet.
+
+Der Prototyp wurde im Rahmen einer Bachelorarbeit im Studiengang Medieninformatik entwickelt. Der Schwerpunkt liegt auf der explorativen Analyse von Nutzungsszenarien für unterschiedliche kognitive Perspektiven, darunter exemplarisch auch neurodivergente Referenzprofile. CogSim dient der frühen Unterstützung des Gestaltungsprozesses und ersetzt weder empirische Usability- oder Accessibility-Evaluationen noch Nutzendentests mit realen Personen.
 
 ## Voraussetzungen
 
@@ -96,7 +90,7 @@ Die Befehle werden aus dem Projektverzeichnis heraus ausgeführt.
 Backend starten:
 
 ```bash
-uvicorn backend.main:app --reload --port 8000
+python -m uvicorn backend.main:app --reload
 ```
 
 Frontend in einem zweiten Terminal starten:
