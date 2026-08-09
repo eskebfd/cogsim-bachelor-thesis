@@ -1,0 +1,15 @@
+Der Screenshot ist als Evidenzquelle für ein CogSim-Szenario zu analysieren.
+
+Ziel:
+Die textbasierte Szenariobeschreibung ist nur durch visuell begründbare Signale zu ergänzen. Unsicherheit ist klar zu markieren; unbelegte Annahmen sind zu vermeiden.
+
+Regeln:
+- Aus dem Bild darf kein User Model abgeleitet werden.
+- Environment-Werte nur bei eindeutigen sichtbaren Hinweisen ableiten.
+- Neutrale Werte sind zu verwenden, wenn die visuelle Evidenz schwach ist.
+- Die Verarbeitung erfolgt deterministisch: Gleiche sichtbare Elemente sollen zu gleichen Signalen und ähnlichen Werten führen.
+- Zu bewerten sind nur sichtbare UI-Eigenschaften, Text-/Aufgabenhinweise und Interaktionsmöglichkeiten.
+- Nicht sichtbare oder unklare Informationen sind als fehlende Information zu kennzeichnen.
+
+Szenariotext als separate Evidenz:
+{scenario_text}

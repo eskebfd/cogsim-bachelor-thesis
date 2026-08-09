@@ -1,0 +1,86 @@
+ROLE
+Zu erzeugen ist ein strukturiertes Environment Model als Simulationsinput.
+
+TASK
+Abzuleiten sind ausschließlich Umgebungsattribute aus Szenario, Umgebung, Gerät und Scenario Dimensions.
+
+INPUT
+
+Szenario:
+{description}
+
+Umgebung:
+{environment}
+
+Gerät:
+{device}
+
+Scenario Dimensions:
+{scenario_dimensions}
+
+OUTPUT
+Zu erzeugen sind alle Felder gemäß EnvironmentModelSchema.
+
+ATTRIBUTE
+- noise_level
+- distractions
+- time_pressure
+- context_stability
+- visual_distraction
+- interruption_risk
+- social_pressure
+- device_constraints
+- lighting_quality
+- mobility_context
+- external_interruption_frequency
+- attention_recovery_support
+
+Jedes Attribut muss enthalten:
+- value: ganze Zahl zwischen 0 und 100
+- scale_min_description: Beschreibung für Wert 0
+- scale_max_description: Beschreibung für Wert 100
+- explanation: ein kurzer Satz mit dem wichtigsten Szenariohinweis
+- confidence: low, medium oder high; beschreibt ausschließlich die Sicherheit der Schätzung, unabhängig von value
+
+SKALENANKER
+- 0 bis 24: sehr niedrig / kaum ausgeprägt
+- 25 bis 49: niedrig bis moderat
+- 50 bis 74: deutlich vorhanden
+- 75 bis 100: stark ausgeprägt
+
+KONSISTENZREGELN FÜR WERTE
+- Die Verarbeitung erfolgt deterministisch: Bei gleicher Eingabe und gleichen Scenario Dimensions
+  sollen dieselben Werte entstehen.
+- Bevorzugt zu verwenden sind 5er-Schritte, außer konkrete Angaben begründen einen
+  präziseren Wert.
+- Werte aus environment_signals sind zu übernehmen, sofern kein klarer Widerspruch vorliegt.
+- Abweichungen von environment_signals sind in
+  explanation mit einem konkreten Szenariohinweis.
+- 50 ist als neutraler Ausgangspunkt zu verwenden, wenn ein Aspekt nicht beschrieben ist.
+- Hohe Werte für noise_level, distractions, time_pressure,
+  visual_distraction, interruption_risk oder social_pressure nur bei expliziter
+  Evidenz verwenden.
+- Positive Signale bleiben positiv gerichtet: context_stability,
+  lighting_quality und attention_recovery_support bedeuten bei hohen Werten
+  bessere Bedingungen.
+
+CONSTRAINTS
+- Keine Interface-Attribute.
+- Keine Task-Schritte.
+- Keine Nutzerprofil-Interpretation.
+- Scenario Dimensions sind zu berücksichtigen, falls dort Umgebungs-Hinweise oder fehlende Informationen vorliegen.
+- context_stability ist positiv gerichtet: höher bedeutet stabilerer Kontext.
+- confidence beeinflusst weder value noch Simulation oder Berechnungen.
+- lighting_quality ist positiv gerichtet: höher bedeutet bessere Lichtbedingungen.
+- attention_recovery_support ist positiv gerichtet: höher bedeutet leichterer Wiedereinstieg nach Ablenkung.
+- Vorhandene Werte aus environment_signals sind zu übernehmen; neu zu schätzen sind nur zusätzliche Attribute.
+- Rein verbale Einschätzungen ohne Zahlenwert und Kriterien sind nicht zulässig.
+- Alle Inhalte müssen auf Deutsch sein.
+
+REVISION INSTRUCTION
+
+Wenn die folgende Revision Instruction leer ist, bleibt dieser Abschnitt unberücksichtigt.
+Eine nicht leere Revision Instruction ist zusätzlich zu allen bisherigen Regeln zu berücksichtigen.
+
+Revision Instruction:
+{revision_instruction}

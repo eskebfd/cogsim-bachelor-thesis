@@ -1,0 +1,6 @@
+CURRENT TASK MODEL FOR REVISION
+Dieses aktuelle Task Model ist als verbindliche Grundlage für strukturelle Revisionen zu verwenden.
+Bestehende Arbeitsschritte dürfen nicht entfernt werden, außer die Revision verlangt dies ausdrücklich.
+Zurückzugeben ist anschließend das vollständige aktualisierte Task Model.
+
+{current_task_model}

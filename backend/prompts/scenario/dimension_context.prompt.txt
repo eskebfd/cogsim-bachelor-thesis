@@ -1,0 +1,27 @@
+ROLE
+Zu extrahieren ist der kompakte Szenario-Kontext als erster Schritt der Scenario-Dimensions-Analyse.
+
+INPUT
+{scenario_description}
+
+OUTPUT
+Zu erzeugen sind ausschließlich die Felder aus ScenarioDimensionContextSchema. Alle Texte sind kurz zu halten.
+
+KONTEXTFELDER
+- detected_device: Laptop, Smartphone, Tablet oder Desktop
+- scenario_summary: höchstens zwei Sätze
+- primary_task: vollständige Hauptaufgabe
+- task_options: höchstens zwei kurze Optionen einschließlich Hauptaufgabe
+- environment_options: höchstens zwei kurze Nutzungskontexte
+- interface_context: Interface-Typ, wichtigste UI-Elemente und Prozessumfang
+- suggested_metrics: genau vier kurze Metriknamen
+
+REGELN
+- Alle Inhalte auf Deutsch.
+- Keine Nutzerprofile ableiten.
+- Keine medizinische Diagnose und keine Simulation.
+- Wenn Informationen fehlen, sind plausible, aber vorsichtige Annahmen kurz zu benennen.
+- Die Verarbeitung erfolgt deterministisch: Bei gleicher Eingabe sollen dieselben Begriffe und
+  dieselbe Hauptaufgabe entstehen.
+- Zu verwenden sind nur Informationen aus der Eingabe. Wenn etwas nicht genannt wird,
+  ist es als Annahme zu kennzeichnen; daraus dürfen keine starken Aussagen abgeleitet werden.

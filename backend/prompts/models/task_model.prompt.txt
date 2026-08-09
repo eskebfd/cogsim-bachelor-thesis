@@ -1,0 +1,160 @@
+ROLE
+Zu erzeugen ist ein strukturiertes Task Model als Simulationsinput.
+
+TASK
+Zu erzeugen sind Basisattribute der Aufgabe, eine HTA-basierte Schrittfolge und eine GOMS-orientierte Zeitschätzung pro Schritt.
+
+INPUT
+
+Szenario:
+{description}
+
+Aufgabe:
+{task}
+
+Scenario Dimensions:
+{scenario_dimensions}
+
+OUTPUT
+Zu erzeugen sind alle Felder gemäß TaskModelSchema.
+
+BASISATTRIBUTE
+- task_complexity
+- number_of_steps
+- reading_demand
+- unfamiliar_word_density
+- orthographic_irregularity
+- morphological_complexity
+- sustained_attention_demand
+- task_switching_demand
+- inhibition_demand
+- divided_attention_demand
+- input_demand
+- memory_demand
+- decision_demand
+- error_criticality
+
+Jedes Basisattribut muss enthalten:
+- value: ganze Zahl zwischen 0 und 100
+- scale_min_description: Beschreibung für Wert 0
+- scale_max_description: Beschreibung für Wert 100
+- explanation: ein kurzer Satz mit dem wichtigsten Szenariohinweis
+- confidence: low, medium oder high; beschreibt ausschließlich die Sicherheit der Schätzung, unabhängig von value
+
+SKALENANKER FÜR BASISATTRIBUTE
+- 0 bis 24: sehr niedrig / kaum ausgeprägt
+- 25 bis 49: niedrig bis moderat
+- 50 bis 74: deutlich vorhanden
+- 75 bis 100: stark ausgeprägt
+
+KONSISTENZREGELN FÜR BASISATTRIBUTE
+- Die Verarbeitung erfolgt deterministisch: Bei gleicher Eingabe und gleichen Scenario Dimensions
+  sollen dieselben Werte entstehen.
+- Bevorzugt zu verwenden sind 5er-Schritte, außer konkrete Zahlen im Szenario begründen
+  einen präziseren Wert.
+- Werte aus task_signals sind zu übernehmen, sofern kein klarer Widerspruch zur
+  abgeleiteten Schrittfolge besteht.
+- Abweichungen von task_signals sind in explanation
+  mit einem konkreten Szenariohinweis.
+- 50 ist als neutraler Ausgangspunkt zu verwenden, wenn ein Aspekt nicht beschrieben ist.
+- Werte über 75 sind nur bei klarer Evidenz für hohe Belastung oder Komplexität zu verwenden.
+- Werte unter 25 sind nur bei klarer Evidenz für sehr geringe Ausprägung zu verwenden.
+- number_of_steps entspricht der Anzahl der HTA-Hauptschritte.
+
+HTA-SCHRITTE
+Abzuleiten ist eine geordnete Schrittfolge. Jeder Schritt benötigt:
+- step_id: step_1, step_2, ...
+- name
+- goal
+- step_type
+- description
+- cognitive_requirements: kurze Liste der Anforderungen, z. B. lesen, erinnern, entscheiden oder kontrollieren
+
+Jede im Szenario ausdrücklich genannte Nutzerhandlung muss als eigener Schritt erhalten bleiben. Lese-, Auswahl-, Eingabe-, Begründungs-, Prüf- und Absendehandlungen dürfen nicht zu einer einzelnen Sammeloperation verkürzt werden.
+
+STEP TYPES
+Zu verwenden sind kurze Typen wie:
+- read
+- select
+- input
+- decide
+- check
+- submit
+- navigate
+- wait_feedback
+
+GOMS-ZEITSCHÄTZUNG
+Für jeden HTA-Schritt ist eine Bearbeitungsdauer in Sekunden zu schätzen.
+goms_operations ist als grobe Operatorliste zu verwenden, z. B.:
+- perceive
+- think
+- point
+- click
+- type
+- read
+- verify
+- wait
+
+Zusätzlich sind operation_time_estimates zu erzeugen. Für jede GOMS-Operation enthält die Liste:
+- operation
+- estimated_duration_seconds
+- cognitive_requirement
+
+Die Summe der Operationszeiten soll ungefähr estimated_duration_seconds des HTA-Schritts ergeben.
+
+ORIENTIERUNG FÜR DAUER
+- perceive: 1 bis 3 Sekunden
+- point oder click: 1 bis 3 Sekunden
+- einfacher Submit: 2 bis 8 Sekunden
+- kurze Auswahl treffen: 5 bis 15 Sekunden
+- komplexere Auswahl oder Vergleich: 15 bis 35 Sekunden
+- kurzen Text lesen oder Information verstehen: 5 bis 20 Sekunden
+- längeren Text oder mehrere Karten/Details lesen: 20 bis 60 Sekunden
+- Formularfeld eingeben: 8 bis 30 Sekunden
+- mehrere Formularfelder eingeben: 25 bis 60 Sekunden
+- Prüfung oder Kontrolle: 15 bis 60 Sekunden
+- Wartezeit auf Systemfeedback: 2 bis 10 Sekunden
+
+KONSISTENZREGELN FÜR DAUER
+- Für ähnliche Schritte sind ähnliche GOMS-Operationen und ähnliche Zeiten zu verwenden.
+- estimated_duration_seconds muss die Summe der operation_time_estimates sein
+  oder maximal um 1 Sekunde durch Rundung abweichen.
+- Dauern sind auf ganze Sekunden zu runden.
+- Hohe Dauerwerte sind nur zu setzen, wenn Umfang, Lesemenge, Vergleichsaufwand oder
+  Eingabeaufwand konkret beschrieben sind.
+
+CONSTRAINTS
+- Keine langen Fließtexte.
+- Keine Nutzerprofil-Interpretation.
+- Keine Umgebungsinterpretation.
+- confidence beeinflusst weder value noch Simulation oder Berechnungen.
+- Scenario Dimensions sind zu berücksichtigen, falls dort Hinweise zur Aufgabe oder fehlende Informationen vorliegen.
+- Basiswerte sind aus task_signals abzuleiten; Begründungen sind kurz zu halten.
+- Rein verbale Einschätzungen ohne Zahlenwert und Kriterien sind nicht zulässig.
+- Die steps-Liste bildet später die Reihenfolge der Simulation.
+- Jeder Schritt muss goms_operations und estimated_duration_seconds enthalten.
+- Alle Inhalte müssen auf Deutsch sein.
+
+REVISION INSTRUCTION
+
+Wenn die folgende Revision Instruction leer ist, bleibt dieser Abschnitt unberücksichtigt.
+Eine nicht leere Revision Instruction ist zusätzlich zu allen bisherigen Regeln zu berücksichtigen.
+
+Revision Instruction:
+{revision_instruction}
+
+REGELN FÜR TASK-MODEL-REVISIONEN
+Wenn ein aktuelles Task Model als zusätzlicher Kontext übergeben wird:
+- Es ist ausschließlich auf Basis dieses aktuellen Task Models zu arbeiten.
+- Bestehende HTA-Schritte dürfen nicht entfernt werden.
+- Manuelle Änderungen und frühere Revisionen sind zu bewahren.
+- Wenn die Revision einen fehlenden Arbeitsschritt beschreibt, ergänze ihn in die bestehende steps-Liste.
+- Wenn die Revision einen bestehenden Schritt präzisiert oder dessen Umfang verändert, aktualisiere diesen bestehenden Schritt, statt einen neuen Schritt zu erzeugen.
+- Beispiel: Wenn ein Leseschritt mehrere Seiten Produktdetails umfasst, erhöhe Lesedauer, GOMS-Operationen und estimated_duration_seconds des vorhandenen Leseschritts.
+- Die steps-Liste darf nicht durch eine neue, unvollständige Liste ersetzt werden.
+- Neue Schritte sind an einer fachlich sinnvollen Position einzufügen.
+- step_id, Reihenfolge und Nummerierung sind konsistent zu aktualisieren.
+- Für neu ergänzte Schritte sind name, goal, step_type, description, goms_operations, operation_time_estimates, estimated_duration_seconds und cognitive_requirements zu erzeugen.
+- estimated_duration_seconds ist aus den GOMS-Operationen abzuleiten.
+- Alle abhängigen Task-Attribute sind auf Grundlage der vollständigen aktualisierten HTA zu aktualisieren.
+- Zurückzugeben ist immer das vollständige aktualisierte Task Model.

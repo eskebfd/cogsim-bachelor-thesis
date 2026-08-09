@@ -1,0 +1,37 @@
+Die folgende Aufgabe ist Teil eines Systems zur kognitiven Interaktionssimulation.
+
+Ursprüngliches Szenario:
+{scenario_description}
+
+Aktueller Review-Schritt:
+{current_stage}
+
+Feedback-Fokus:
+{feedback_target}
+
+Feedback:
+{feedback}
+
+Klassifikation des Task-Feedbacks:
+{task_feedback_classification}
+
+Aufgabe:
+Zu erstellen ist eine klare Revision Instruction für den nächsten Modellierungsschritt.
+
+Die Revision Instruction soll beschreiben:
+- welches Modell überarbeitet werden soll
+- welche Aspekte aus dem Feedback berücksichtigt werden müssen
+- welche Inhalte unverändert bleiben sollen
+- ob abhängige Modelle anschließend neu abgeleitet werden müssen
+
+Wichtig:
+- Das ursprüngliche Szenario ist beizubehalten.
+- Es darf kein neues Szenario erfunden werden.
+- Zu ändern sind nur Inhalte, die durch das Feedback begründet sind.
+- Die Formulierung soll neutral, simulationsbezogen und designorientiert sein.
+- Wenn berechnete Aufgabenparameter oder Metrics betroffen sind, müssen beide weiterhin zusammenpassen.
+- Bei Task-Model-Revisionen zur HTA-Struktur: Das aktuelle Task Model ist als Grundlage zu verwenden; vorhandene Schritte dürfen nicht entfernt werden; fehlende Schritte sind nur dann zu ergänzen, wenn wirklich ein neuer Arbeitsschritt beschrieben wird; vorhandene Schritte sind bei Umfangs- oder Dauerhinweisen zu aktualisieren; frühere Revisionen sind zu bewahren; vollständige GOMS-Operationen und Zeiten für neue oder geänderte Schritte sind zu verlangen; ein vollständiges aktualisiertes Task Model ist zurückzufordern.
+- Bei change_type ambiguous: Es ist eine Rückfrage und keine strukturelle Änderung zu fordern.
+- Bei update_timing: Nur GOMS-Operationen, Operation-Time-Estimates und estimated_duration_seconds betroffener vorhandener Schritte sind zu aktualisieren.
+- Bei update_requirements: Nur kognitive Anforderungen und davon abhängige Task-Attribute betroffener vorhandener Schritte sind zu aktualisieren.
+- Bei add_step: Ein neuer Schritt ist nur zu ergänzen, wenn die Klassifikation add_step lautet.

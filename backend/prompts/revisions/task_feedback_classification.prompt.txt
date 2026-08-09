@@ -1,0 +1,37 @@
+Zu klassifizieren ist Freitext-Feedback zur bestehenden HTA-Struktur eines Task Models.
+
+Ursprüngliches Szenario:
+{scenario_description}
+
+Aktuelles Task Model:
+{current_task_model}
+
+Feedback:
+{feedback}
+
+Aufgabe:
+Das Feedback ist genau einer Änderungsart zuzuordnen.
+
+Mögliche Änderungsarten:
+- add_step: Ein bislang fehlender Arbeitsschritt soll ergänzt werden.
+- update_step: Ein bestehender Schritt soll inhaltlich angepasst, erweitert oder präzisiert werden.
+- remove_step: Ein bestehender Schritt ist falsch oder nicht erforderlich.
+- reorder_steps: Die Reihenfolge bestehender Schritte soll verändert werden.
+- split_step: Ein vorhandener Schritt ist zu grob und soll in mehrere Schritte aufgeteilt werden.
+- merge_steps: Mehrere bestehende Schritte sollen zusammengeführt werden.
+- update_timing: Nur GOMS-Operationen oder Zeitannahmen eines vorhandenen Schritts sollen angepasst werden.
+- update_requirements: Kognitive Anforderungen eines bestehenden Schritts sollen angepasst werden.
+- ambiguous: Das Feedback ist nicht eindeutig genug.
+
+Regeln:
+- Nicht jedes Feedback ist als add_step zu interpretieren.
+- Wenn ein vorhandener Schritt länger, komplexer, detaillierter oder anders gewichtet werden soll, ist update_step, update_timing oder update_requirements zu wählen.
+- Wenn das Feedback nur Dauer, Seitenumfang, Lesemenge oder GOMS-Zeit betrifft, ist update_timing zu wählen.
+- Wenn das Feedback Gedächtnis, Aufmerksamkeit, Entscheiden, Lesen, Verstehen oder Prüfen betrifft, ist update_requirements zu wählen, sofern keine strukturelle Änderung beschrieben wird.
+- Wenn ein zusätzlicher Arbeitsschritt klar genannt wird, ist add_step zu wählen.
+- Wenn bestehende Schritte namentlich genannt werden, sind passende step_ids und Namen aus dem aktuellen Task Model einzutragen.
+- Wenn kein Zielschritt sicher bestimmbar ist, aber die Änderungsart klar ist, bleibt target_step_ids leer und requested_change wird präzise beschrieben.
+- Wenn die Aussage zu unklar ist, ist ambiguous zu wählen und eine kurze clarification_question zu formulieren.
+- Zielschritte dürfen nicht erfunden werden.
+
+Zurückzugeben ist ausschließlich eine strukturierte Antwort gemäß TaskFeedbackClassification.

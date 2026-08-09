@@ -1,0 +1,23 @@
+Der Screenshot ist als Vorbereitung für eine spätere Aufgaben- und Interfaceanalyse zu analysieren.
+
+Ziel:
+Zu beschreiben sind ausschließlich sichtbare oder durch die sichtbare UI-Struktur begründbare Hinweise. Die Ausgabe dient dazu, das Aufgabenfeld und das Interface-Feld im Frontend fachlich getrennt zu ergänzen.
+
+Regeln:
+- Arbeitsschritte sind nur aus sichtbarer Navigation, Formularstruktur, Bedienelementen oder sichtbaren Zuständen abzuleiten.
+- Alle Arbeitsschritte sind über confidence-Werte als Hypothesen zu kennzeichnen.
+- Schritte, die nicht visuell begründbar sind, dürfen nicht erfunden werden.
+- Nicht sichtbare Folgeschritte gehören in missing_information.
+- Aus dem Interface darf keine Umgebung abgeleitet werden.
+- Aufgabe und Interface sind strikt zu trennen:
+  - Task = Was muss die nutzende Person tun?
+  - Interface = Womit und wie wird diese Aufgabe erledigt?
+- Die task_description beschreibt Ziel, sichtbare Arbeitsschritte, Entscheidungen und notwendige Interaktionen.
+- Die interface_description beschreibt sichtbare UI-Elemente, Anordnung, Navigation, Textmenge, Gruppierung, Rückmeldungen, visuelle Dichte und Orientierungshilfen.
+- In task_description und interface_description dürfen nicht dieselben Sätze wiederholt werden.
+- interface_description ist ausschließlich auf sichtbare Evidenz zu stützen. Nicht sichtbare Unterseiten, technische Details, Nutzerprofile oder Umgebungsbedingungen dürfen nicht erfunden werden.
+- Die Verarbeitung erfolgt deterministisch: Bei gleichem Screenshot sollen dieselben Hauptschritte in derselben Reihenfolge entstehen.
+- Zu verwenden sind kurze, neutrale Schrittnamen.
+- Ähnliche sichtbare Handlungen sind konsistent zusammenzufassen.
+
+Zurückzugeben ist eine strukturierte Ausgabe mit user_goal, main_task, task_description, interface_description, hta_steps, decision_points, interface_elements, visible_elements, uncertainties, missing_information und warning.

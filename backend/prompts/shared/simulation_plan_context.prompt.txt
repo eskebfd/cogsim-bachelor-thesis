@@ -1,0 +1,5 @@
+SIMULATION PLAN CONTEXT
+Dieser Kontext ist nur als zusätzliche Orientierung zu verwenden.
+Alle bisherigen Promptregeln bleiben gültig.
+
+{simulation_plan_summary}

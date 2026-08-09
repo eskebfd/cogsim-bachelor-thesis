@@ -1,0 +1,60 @@
+ROLE
+Zu extrahieren sind ausschließlich aufgabenbezogene numerische Szenario-Signale.
+
+INPUT
+Szenario:
+{scenario_description}
+
+Kontext:
+{dimension_context}
+
+OUTPUT
+Zu erzeugen sind ausschließlich die Felder aus TaskDimensionSignalsSchema.
+
+SIGNALE
+- task_complexity
+- number_of_steps
+- reading_demand
+- input_demand
+- memory_demand
+- unfamiliar_word_density
+- orthographic_irregularity
+- morphological_complexity
+- sustained_attention_demand
+- task_switching_demand
+- inhibition_demand
+- divided_attention_demand
+
+JEDES SIGNAL ENTHÄLT NUR
+- id: exakt der oben genannte technische Name
+- name: kurzer deutscher Name
+- description: ein kurzer Satz zur gemessenen Eigenschaft
+- value: ganze Zahl von 0 bis 100
+- label: kurze Einordnung des konkreten Werts
+- scale_min_description: kurze Bedeutung von 0
+- scale_max_description: kurze Bedeutung von 100
+- rationale: ein kurzer Satz mit dem wichtigsten Szenariohinweis oder einer klar markierten Annahme
+- confidence: low, medium oder high
+
+SKALENANKER
+- 0 bis 24: sehr niedrig / kaum ausgeprägt
+- 25 bis 49: niedrig bis moderat
+- 50 bis 74: deutlich vorhanden
+- 75 bis 100: stark ausgeprägt
+
+KONSISTENZREGELN FÜR WERTE
+- Die Verarbeitung erfolgt deterministisch: Bei gleicher Eingabe sollen dieselben Werte entstehen.
+- Bevorzugt zu verwenden sind 5er-Schritte, außer die Eingabe begründet einen präziseren Wert.
+- 50 ist als neutraler Ausgangspunkt zu verwenden, wenn ein Aspekt nicht beschrieben ist.
+- 35 oder 65 sind zu verwenden, wenn ein Aspekt nur schwach angedeutet ist.
+- Werte über 75 sind nur bei klarer Evidenz zu verwenden, zum Beispiel vielen Schritten,
+  hoher Lesemenge, vielen Eingaben oder mehreren Entscheidungen.
+- Werte unter 25 sind nur bei klarer Evidenz für eine sehr einfache Aufgabe zu verwenden.
+- number_of_steps beschreibt die reale Anzahl erwartbarer Hauptschritte, nicht
+  eine frei interpretierte Schwierigkeitsskala.
+
+REGELN
+- Keine Interface- oder Umgebungswerte erzeugen.
+- confidence beschreibt nur die Sicherheit der Schätzung und ist unabhängig von value.
+- Nutzerprofile und personenbezogene Attribute werden nicht aus dem Szenario abgeleitet.
+- Alle Inhalte auf Deutsch.

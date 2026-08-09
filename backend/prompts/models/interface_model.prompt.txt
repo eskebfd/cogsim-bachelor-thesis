@@ -1,0 +1,88 @@
+ROLE
+Zu erzeugen ist ein strukturiertes Interface Model als Simulationsinput.
+
+TASK
+Abzuleiten sind Interface-Attribute aus Szenario, Aufgabe und Scenario Dimensions.
+
+INPUT
+
+Szenario:
+{description}
+
+Aufgabe:
+{task}
+
+Scenario Dimensions:
+{scenario_dimensions}
+
+OUTPUT
+Zu erzeugen sind alle Felder gemäß InterfaceModelSchema.
+
+ATTRIBUTE
+- text_volume
+- sentence_length
+- word_difficulty
+- technical_terms
+- visual_clutter
+- navigation_complexity
+- accessibility_support
+- feedback_quality
+- text_legibility
+- text_density
+- line_tracking_difficulty
+- stimulus_density
+- irrelevant_signal_load
+- feedback_interruptiveness
+- focus_guidance
+
+Jedes Attribut muss enthalten:
+- value: ganze Zahl zwischen 0 und 100
+- scale_min_description: Beschreibung für Wert 0
+- scale_max_description: Beschreibung für Wert 100
+- explanation: ein kurzer Satz mit dem wichtigsten Szenariohinweis
+- confidence: low, medium oder high; beschreibt ausschließlich die Sicherheit der Schätzung, unabhängig von value
+
+SKALENANKER
+- 0 bis 24: sehr niedrig / kaum ausgeprägt
+- 25 bis 49: niedrig bis moderat
+- 50 bis 74: deutlich vorhanden
+- 75 bis 100: stark ausgeprägt
+
+KONSISTENZREGELN FÜR WERTE
+- Die Verarbeitung erfolgt deterministisch: Bei gleicher Eingabe und gleichen Scenario Dimensions
+  sollen dieselben Werte entstehen.
+- Bevorzugt zu verwenden sind 5er-Schritte, außer konkrete Angaben begründen einen
+  präziseren Wert.
+- Werte aus interface_signals sind zu übernehmen, sofern kein klarer Widerspruch vorliegt.
+- Abweichungen von interface_signals sind in explanation
+  mit einem konkreten Szenariohinweis.
+- 50 ist als neutraler Ausgangspunkt zu verwenden, wenn ein Aspekt nicht beschrieben ist.
+- Werte über 75 sind nur bei klarer Evidenz für starke Ausprägung zu verwenden.
+- Werte unter 25 sind nur bei klarer Evidenz für geringe Ausprägung zu verwenden.
+- Positive Signale bleiben positiv gerichtet: accessibility_support,
+  feedback_quality und focus_guidance bedeuten bei hohen Werten bessere
+  Unterstützung.
+
+CONSTRAINTS
+- Keine User-Attribute erzeugen.
+- Keine Task-Schrittfolge erzeugen.
+- Keine Umgebungsattribute erzeugen.
+- Scenario Dimensions sind zu berücksichtigen, falls dort Interface-Hinweise oder fehlende Informationen vorliegen.
+- accessibility_support und feedback_quality sind positiv gerichtet: höher bedeutet bessere Unterstützung.
+- confidence beeinflusst weder value noch Simulation oder Berechnungen.
+- visual_clutter operationalisiert display_density und inverse visual_clarity.
+- navigation_complexity operationalisiert Navigations- und Interaktionsaufwand; text_volume, sentence_length, word_difficulty und technical_terms bilden später gemeinsam Text Complexity.
+- text_legibility, text_density und line_tracking_difficulty erfassen dyslexierelevante Lesbarkeits- und visuelle Textverfolgungsfaktoren.
+- stimulus_density, irrelevant_signal_load, feedback_interruptiveness und focus_guidance erfassen ADHS-relevante Reiz-, Unterbrechungs- und Fokusführungsfaktoren.
+- focus_guidance ist positiv gerichtet: höher bedeutet klarere Führung der Aufmerksamkeit.
+- Werte aus interface_signals sind zu übernehmen, sofern kein klarer Widerspruch vorliegt.
+- Rein verbale Einschätzungen ohne Zahlenwert und Kriterien sind nicht zulässig.
+- Alle Inhalte müssen auf Deutsch sein.
+
+REVISION INSTRUCTION
+
+Wenn die folgende Revision Instruction leer ist, bleibt dieser Abschnitt unberücksichtigt.
+Eine nicht leere Revision Instruction ist zusätzlich zu allen bisherigen Regeln zu berücksichtigen.
+
+Revision Instruction:
+{revision_instruction}
